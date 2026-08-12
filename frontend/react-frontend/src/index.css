@@ -12,8 +12,8 @@ html {
 
 body {
   margin: 0;
-  background: #090909;
-  color: #f8f5ef;
+  background: #4a382c;
+  color: #3b2b23;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -21,16 +21,11 @@ button,
 input,
 select {
   font: inherit;
+  outline: none;
 }
 
 button {
   cursor: pointer;
-}
-
-button,
-input,
-select {
-  outline: none;
 }
 
 
@@ -40,8 +35,27 @@ select {
 
 .app {
   width: min(1200px, 100%);
+  min-height: 100vh;
   margin: 0 auto;
   padding: 24px 38px 80px;
+
+  background:
+    radial-gradient(
+      circle at 8% 12%,
+      rgba(239, 212, 213, 0.14) 0 4px,
+      transparent 5px
+    ),
+    radial-gradient(
+      circle at 90% 25%,
+      rgba(247, 241, 223, 0.12) 0 5px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 70% 85%,
+      rgba(239, 212, 213, 0.1) 0 3px,
+      transparent 4px
+    ),
+    #4a382c;
 }
 
 
@@ -51,9 +65,11 @@ select {
 
 .topbar {
   height: 60px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   margin-bottom: 45px;
 }
 
@@ -71,11 +87,11 @@ select {
   align-items: center;
   justify-content: center;
 
-  border: 1px solid #292929;
+  border: 1px solid rgba(247, 241, 223, 0.2);
   border-radius: 50%;
 
-  background: #151515;
-  color: #f8f5ef;
+  background: rgba(247, 241, 223, 0.1);
+  color: #f7f1df;
 
   font-size: 24px;
 
@@ -85,7 +101,7 @@ select {
 }
 
 .icon-button:hover {
-  background: #222;
+  background: rgba(239, 212, 213, 0.25);
   transform: translateY(-2px);
 }
 
@@ -93,14 +109,30 @@ select {
   width: 44px;
   height: 44px;
 
-  border: none;
+  border: 2px solid #f7f1df;
   border-radius: 50%;
 
-  background: #e5cecf;
-  color: #191616;
+  background: #efd4d5;
+  color: #4a382c;
 
   font-size: 15px;
   font-weight: 700;
+}
+
+
+/* =========================================
+   TEXT
+========================================= */
+
+.eyebrow {
+  margin: 0 0 12px;
+
+  color: #e7d7c8;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 3px;
 }
 
 
@@ -116,17 +148,8 @@ select {
   gap: 40px;
 
   margin-bottom: 48px;
-}
 
-.eyebrow {
-  margin: 0 0 12px;
-
-  color: #9b9892;
-
-  font-size: 11px;
-  font-weight: 700;
-
-  letter-spacing: 3px;
+  color: #f7f1df;
 }
 
 .hero h1 {
@@ -140,13 +163,13 @@ select {
 }
 
 .hero h1 span {
-  color: #e8ced0;
+  color: #efd4d5;
 }
 
 .hero-subtitle {
   margin: 22px 0 0;
 
-  color: #999691;
+  color: #dbc9bb;
 
   font-size: 14px;
   letter-spacing: 0.2px;
@@ -170,13 +193,13 @@ select {
 
   border-radius: 42% 58% 55% 45% / 50% 45% 55% 50%;
 
-  background: #e5dcca;
-  color: #181616;
+  background: #f7f1df;
+  color: #4a382c;
 
   transform: rotate(4deg);
 
   box-shadow:
-    8px 8px 0 #c9aeb0;
+    8px 8px 0 #efd4d5;
 
   transition: transform 0.3s ease;
 }
@@ -221,7 +244,7 @@ select {
 
   border-radius: 30px;
 
-  color: #191717;
+  color: #4a382c;
 
   display: flex;
   flex-direction: column;
@@ -236,7 +259,7 @@ select {
   transform: translateY(-5px) rotate(-0.5deg);
 
   box-shadow:
-    0 12px 25px rgba(0, 0, 0, 0.2);
+    0 12px 25px rgba(35, 20, 10, 0.22);
 }
 
 .stat-card span {
@@ -265,19 +288,19 @@ select {
 ========================================= */
 
 .cream {
-  background: #e4dece;
+  background: #f7f1df;
 }
 
 .pink {
-  background: #e7ced1;
+  background: #efd4d5;
 }
 
 .beige {
-  background: #dcd2c1;
+  background: #e4d4c3;
 }
 
 .lavender {
-  background: #d9d2dc;
+  background: #ded5df;
 }
 
 
@@ -295,26 +318,29 @@ select {
 
   padding: 0 20px;
 
-  background: #151515;
+  background: #f7f1df;
 
-  border: 1px solid #272727;
+  border: 2px solid transparent;
 
   border-radius: 20px;
 
   margin-bottom: 14px;
 
+  box-shadow:
+    0 8px 20px rgba(40, 25, 15, 0.1);
+
   transition:
     border 0.2s ease,
-    background 0.2s ease;
+    transform 0.2s ease;
 }
 
 .search-box:focus-within {
-  border-color: #7f7470;
-  background: #181818;
+  border-color: #efd4d5;
+  transform: translateY(-1px);
 }
 
 .search-box span {
-  color: #8b8883;
+  color: #80695a;
   font-size: 22px;
 }
 
@@ -325,13 +351,13 @@ select {
 
   background: transparent;
 
-  color: #f8f5ef;
+  color: #4a382c;
 
   font-size: 14px;
 }
 
 .search-box input::placeholder {
-  color: #66625e;
+  color: #9a8779;
 }
 
 
@@ -356,23 +382,26 @@ select {
 
   padding: 0 18px;
 
-  border: 1px solid #292929;
+  border: 1px solid rgba(247, 241, 223, 0.2);
 
   border-radius: 16px;
 
-  background: #111;
+  background: #f7f1df;
 
-  color: white;
+  color: #4a382c;
 
   font-size: 14px;
+
+  box-shadow:
+    0 6px 16px rgba(35, 20, 10, 0.08);
 }
 
 .add-task input::placeholder {
-  color: #666;
+  color: #9a8779;
 }
 
 .add-task input:focus {
-  border-color: #d5bfc0;
+  border-color: #efd4d5;
 }
 
 .add-task select {
@@ -380,15 +409,18 @@ select {
 
   padding: 0 15px;
 
-  border: 1px solid #292929;
+  border: 1px solid rgba(247, 241, 223, 0.25);
 
   border-radius: 16px;
 
-  background: #151515;
+  background: #f7f1df;
 
-  color: #ddd;
+  color: #4a382c;
 
   cursor: pointer;
+
+  box-shadow:
+    0 6px 16px rgba(35, 20, 10, 0.08);
 }
 
 .add-task button {
@@ -398,9 +430,9 @@ select {
   border: none;
   border-radius: 17px;
 
-  background: #e7ced1;
+  background: #efd4d5;
 
-  color: #171515;
+  color: #4a382c;
 
   font-size: 25px;
 
@@ -411,7 +443,7 @@ select {
 
 .add-task button:hover {
   transform: translateY(-3px) rotate(2deg);
-  background: #efd9db;
+  background: #f5dfe0;
 }
 
 
@@ -426,6 +458,8 @@ select {
   justify-content: space-between;
 
   margin-bottom: 24px;
+
+  color: #f7f1df;
 }
 
 .section-heading h2 {
@@ -436,7 +470,7 @@ select {
 }
 
 .section-heading > span {
-  color: #77736f;
+  color: #dbc9bb;
 
   font-size: 12px;
 
@@ -468,7 +502,7 @@ select {
 
   border-radius: 31px;
 
-  color: #191717;
+  color: #4a382c;
 
   position: relative;
 
@@ -477,6 +511,22 @@ select {
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
+}
+
+.category-card::before {
+  content: "";
+
+  position: absolute;
+
+  width: 130px;
+  height: 130px;
+
+  right: -45px;
+  top: -45px;
+
+  border-radius: 50%;
+
+  background: rgba(239, 212, 213, 0.4);
 }
 
 .category-card::after {
@@ -499,7 +549,14 @@ select {
   transform: translateY(-5px) rotate(-0.5deg);
 
   box-shadow:
-    0 18px 35px rgba(0, 0, 0, 0.2);
+    0 18px 35px rgba(35, 20, 10, 0.2);
+}
+
+.category-card.focused {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 18px 40px rgba(35, 20, 10, 0.2);
 }
 
 
@@ -512,6 +569,9 @@ select {
 
   align-items: flex-start;
   justify-content: space-between;
+
+  position: relative;
+  z-index: 1;
 }
 
 .category-icon {
@@ -529,7 +589,20 @@ select {
   font-size: 25px;
 
   box-shadow:
-    inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+    inset 0 0 0 1px rgba(74, 56, 44, 0.06);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.category-icon:hover {
+  transform: rotate(-5deg) scale(1.08);
+
+  box-shadow:
+    0 8px 20px rgba(70, 50, 40, 0.12);
 }
 
 .task-number {
@@ -549,12 +622,15 @@ select {
 .category-title {
   display: flex;
 
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
 
-  gap: 15px;
+  gap: 10px;
 
   margin: 27px 0 10px;
+
+  position: relative;
+  z-index: 1;
 }
 
 .category-title h3 {
@@ -572,6 +648,30 @@ select {
   opacity: 0.55;
 }
 
+.category-open {
+  border: none;
+
+  background: transparent;
+
+  color: #6b5548;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  opacity: 0.65;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.category-open:hover {
+  opacity: 1;
+  transform: translateX(3px);
+}
+
 
 /* =========================================
    MINI PROGRESS
@@ -587,7 +687,10 @@ select {
 
   border-radius: 99px;
 
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(74, 56, 44, 0.13);
+
+  position: relative;
+  z-index: 1;
 }
 
 .mini-progress div {
@@ -595,7 +698,7 @@ select {
 
   border-radius: 99px;
 
-  background: #1a1818;
+  background: #4a382c;
 
   transition: width 0.4s ease;
 }
@@ -610,6 +713,9 @@ select {
   flex-direction: column;
 
   gap: 9px;
+
+  position: relative;
+  z-index: 1;
 }
 
 .task {
@@ -635,6 +741,22 @@ select {
 
 
 /* =========================================
+   TASK CONTENT
+========================================= */
+
+.task-content {
+  min-width: 0;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+
+/* =========================================
    CHECKBOX
 ========================================= */
 
@@ -650,13 +772,13 @@ select {
 
   padding: 0;
 
-  border: 1.5px solid rgba(0, 0, 0, 0.45);
+  border: 1.5px solid rgba(74, 56, 44, 0.45);
 
   border-radius: 50%;
 
   background: transparent;
 
-  color: white;
+  color: #f7f1df;
 
   font-size: 12px;
 
@@ -670,9 +792,9 @@ select {
 }
 
 .checkbox.checked {
-  border-color: #191717;
+  border-color: #4a382c;
 
-  background: #191717;
+  background: #4a382c;
 }
 
 .task .completed {
@@ -693,7 +815,7 @@ select {
 
   background: transparent;
 
-  color: #191717;
+  color: #4a382c;
 
   font-size: 19px;
 
@@ -710,7 +832,520 @@ select {
 
 .delete-task:hover {
   opacity: 1 !important;
+
   transform: scale(1.15);
+}
+
+
+/* =========================================
+   EDIT
+========================================= */
+
+.edit-task {
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #4a382c;
+
+  font-size: 15px;
+
+  opacity: 0;
+
+  cursor: pointer;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.task:hover .edit-task {
+  opacity: 0.45;
+}
+
+.edit-task:hover {
+  opacity: 1;
+
+  transform: scale(1.15);
+}
+
+.edit-task-input {
+  flex: 1;
+
+  min-width: 0;
+
+  height: 34px;
+
+  padding: 0 10px;
+
+  border: 1px solid rgba(74, 56, 44, 0.25);
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.5);
+
+  color: #4a382c;
+
+  font-size: 13px;
+
+  outline: none;
+}
+
+.edit-task-input:focus {
+  border-color: rgba(74, 56, 44, 0.5);
+}
+
+.edit-save,
+.edit-cancel {
+  border: none;
+
+  background: transparent;
+
+  font-size: 17px;
+
+  padding: 3px;
+
+  cursor: pointer;
+}
+
+.edit-save {
+  color: #355b43;
+}
+
+.edit-cancel {
+  color: #8c4545;
+}
+
+
+/* =========================================
+   PRIORITY
+========================================= */
+
+.priority-select {
+  min-width: 115px;
+
+  padding: 11px 12px;
+
+  border: 1px solid rgba(60, 45, 35, 0.12);
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.55);
+
+  color: #332820;
+
+  font-size: 13px;
+
+  font-family: inherit;
+
+  cursor: pointer;
+
+  outline: none;
+}
+
+.priority-select:focus {
+  border-color: rgba(60, 45, 35, 0.3);
+}
+
+.priority-select.high {
+  background: rgba(255, 220, 220, 0.7);
+}
+
+.priority-select.medium {
+  background: rgba(255, 242, 195, 0.7);
+}
+
+.priority-select.low {
+  background: rgba(218, 241, 220, 0.7);
+}
+
+.priority-badge {
+  margin-left: auto;
+
+  padding: 4px 8px;
+
+  border-radius: 999px;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 0.04em;
+
+  white-space: nowrap;
+}
+
+.priority-badge.high {
+  background: #f5d4d4;
+
+  color: #8b4141;
+}
+
+.priority-badge.medium {
+  background: #f4e8bb;
+
+  color: #806b27;
+}
+
+.priority-badge.low {
+  background: #d9eadb;
+
+  color: #47704d;
+}
+
+.edit-priority-select {
+  width: 42px;
+
+  padding: 6px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.6);
+
+  cursor: pointer;
+
+  outline: none;
+}
+
+
+/* =========================================
+   DATE SYSTEM
+========================================= */
+
+.date-overview {
+  display: flex;
+
+  gap: 14px;
+
+  margin: 20px 0;
+}
+
+.date-card {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 16px 18px;
+
+  border-radius: 18px;
+
+  background: #f7f1df;
+
+  border: 1px solid rgba(74, 56, 44, 0.08);
+
+  box-shadow:
+    0 6px 16px rgba(35, 20, 10, 0.08);
+}
+
+.date-card > span {
+  width: 38px;
+  height: 38px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: #efd4d5;
+
+  font-size: 18px;
+}
+
+.date-card strong {
+  display: block;
+
+  font-size: 20px;
+
+  color: #4a382c;
+}
+
+.date-card p {
+  margin: 2px 0 0;
+
+  font-size: 11px;
+
+  color: #80695a;
+
+  opacity: 0.75;
+}
+
+.due-date-input {
+  min-width: 145px;
+
+  padding: 11px 12px;
+
+  border: 1px solid rgba(60, 45, 35, 0.12);
+
+  border-radius: 14px;
+
+  background: #f7f1df;
+
+  color: #332820;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  outline: none;
+}
+
+.due-date-input:focus {
+  border-color: rgba(60, 45, 35, 0.3);
+}
+
+
+/* =========================================
+   DUE DATE LABELS
+========================================= */
+
+.due-date {
+  width: fit-content;
+
+  font-size: 9px;
+
+  letter-spacing: 0.02em;
+
+  opacity: 0.6;
+}
+
+.due-date.today {
+  color: #806b27;
+
+  opacity: 1;
+
+  font-weight: 700;
+}
+
+.due-date.overdue {
+  color: #9a4848;
+
+  opacity: 1;
+
+  font-weight: 700;
+}
+
+.due-date.upcoming {
+  color: #52715a;
+}
+
+.edit-date-input {
+  width: 125px;
+
+  padding: 6px 7px;
+
+  border: 1px solid rgba(60, 45, 35, 0.12);
+
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.6);
+
+  font-family: inherit;
+
+  font-size: 10px;
+
+  outline: none;
+}
+
+
+/* =========================================
+   SMART VIEWS
+========================================= */
+
+.smart-views {
+  display: flex;
+
+  gap: 8px;
+
+  flex-wrap: wrap;
+
+  margin: 14px 0 24px;
+}
+
+.smart-views button {
+  border: 1px solid rgba(247, 241, 223, 0.25);
+
+  background: rgba(247, 241, 223, 0.92);
+
+  color: #49382e;
+
+  padding: 9px 14px;
+
+  border-radius: 999px;
+
+  font-family: inherit;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smart-views button:hover {
+  transform: translateY(-2px);
+
+  background: #fff9e9;
+}
+
+.smart-views button.active {
+  background: #efd4d5;
+
+  color: #4a382c;
+
+  border-color: #efd4d5;
+
+  box-shadow:
+    0 5px 15px rgba(35, 20, 10, 0.18);
+}
+
+
+/* =========================================
+   STREAK
+========================================= */
+
+.streak-section {
+  display: flex;
+
+  gap: 14px;
+
+  margin: 18px 0;
+}
+
+.streak-card {
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 17px 20px;
+
+  border-radius: 20px;
+
+  background: #f7f1df;
+
+  border: 1px solid rgba(74, 56, 44, 0.08);
+
+  box-shadow:
+    0 6px 16px rgba(35, 20, 10, 0.08);
+}
+
+.streak-icon {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 14px;
+
+  background: #efd4d5;
+
+  font-size: 21px;
+}
+
+.streak-card strong {
+  display: block;
+
+  font-size: 20px;
+
+  color: #4a382c;
+}
+
+.streak-card p {
+  margin: 3px 0 0;
+
+  font-size: 10px;
+
+  color: #80695a;
+
+  opacity: 0.7;
+}
+
+
+/* =========================================
+   LIST HEADING ACTIONS
+========================================= */
+
+.list-heading-actions {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.show-all-button {
+  border: none;
+
+  background: #f7f1df;
+
+  color: #59463a;
+
+  padding: 8px 12px;
+
+  border-radius: 999px;
+
+  font-family: inherit;
+
+  font-size: 10px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.show-all-button:hover {
+  background: #fff9e9;
+
+  transform: translateX(-2px);
+}
+
+.clear-search {
+  border: none;
+
+  background: transparent;
+
+  color: #59463a;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  padding: 0 6px;
+}
+
+.focused-category-grid {
+  grid-template-columns: minmax(0, 1fr);
+
+  max-width: 700px;
+}
+
+
+/* =========================================
+   EMPTY TASK
+========================================= */
+
+.empty-task {
+  margin: 8px 0 0;
+
+  color: rgba(74, 56, 44, 0.45);
+
+  font-size: 12px;
+
+  font-style: italic;
 }
 
 
@@ -728,11 +1363,14 @@ select {
 
   gap: 20px;
 
-  border: 1px solid #282828;
+  border: 2px solid rgba(247, 241, 223, 0.2);
 
   border-radius: 29px;
 
-  background: #111;
+  background: #5a4436;
+
+  box-shadow:
+    0 10px 25px rgba(35, 20, 10, 0.12);
 }
 
 .quote-icon {
@@ -747,9 +1385,9 @@ select {
 
   border-radius: 50%;
 
-  background: #e7ced1;
+  background: #efd4d5;
 
-  color: #171515;
+  color: #4a382c;
 
   font-size: 21px;
 }
@@ -757,7 +1395,7 @@ select {
 .quote-card p {
   margin: 0 0 7px;
 
-  color: #dedbd5;
+  color: #f7f1df;
 
   font-size: 14px;
 
@@ -765,15 +1403,14 @@ select {
 }
 
 .quote-card span {
-  color: #67635f;
+  color: #dbc9bb;
 
   font-size: 11px;
 }
 
 
 /* =========================================
-   LOGIN / REGISTER
-   SAME VISUAL THEME
+   AUTH PAGE
 ========================================= */
 
 .auth-page {
@@ -785,24 +1422,36 @@ select {
 
   padding: 30px 20px;
 
-  background: #090909;
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(239, 212, 213, 0.18) 0 5px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 85% 70%,
+      rgba(247, 241, 223, 0.12) 0 4px,
+      transparent 5px
+    ),
+    #4a382c;
 }
 
 .auth-card {
   width: 100%;
+
   max-width: 430px;
 
   padding: 42px;
 
-  background: #e4dece;
+  background: #f7f1df;
 
-  color: #191717;
+  color: #4a382c;
 
   border-radius: 32px;
 
   box-shadow:
-    10px 10px 0 #c8b3b4,
-    0 25px 60px rgba(0, 0, 0, 0.35);
+    10px 10px 0 #efd4d5,
+    0 25px 60px rgba(35, 20, 10, 0.35);
 }
 
 .auth-header {
@@ -823,11 +1472,12 @@ select {
 
   border-radius: 20px;
 
-  background: #e7ced1;
+  background: #efd4d5;
 
-  color: #191717;
+  color: #4a382c;
 
   font-size: 22px;
+
   font-weight: bold;
 
   transform: rotate(-4deg);
@@ -851,6 +1501,7 @@ select {
 
 .auth-form {
   display: flex;
+
   flex-direction: column;
 
   gap: 18px;
@@ -858,6 +1509,7 @@ select {
 
 .form-group {
   display: flex;
+
   flex-direction: column;
 
   gap: 7px;
@@ -868,7 +1520,7 @@ select {
 
   font-weight: 700;
 
-  color: #36312d;
+  color: #4a382c;
 }
 
 .form-group input {
@@ -884,7 +1536,7 @@ select {
 
   background: rgba(255, 255, 255, 0.55);
 
-  color: #191717;
+  color: #4a382c;
 
   font-size: 14px;
 }
@@ -922,6 +1574,7 @@ select {
   color: #635c56;
 
   font-size: 11px;
+
   font-weight: 700;
 }
 
@@ -934,9 +1587,9 @@ select {
 
   border-radius: 15px;
 
-  background: #191717;
+  background: #4a382c;
 
-  color: #f8f5ef;
+  color: #f7f1df;
 
   font-size: 14px;
 
@@ -950,7 +1603,7 @@ select {
 .auth-button:hover {
   transform: translateY(-2px);
 
-  background: #302b29;
+  background: #5a4436;
 }
 
 .auth-button:disabled {
@@ -990,7 +1643,7 @@ select {
 }
 
 .auth-footer a {
-  color: #191717;
+  color: #4a382c;
 
   font-weight: 700;
 
@@ -999,6 +1652,29 @@ select {
 
 .auth-footer a:hover {
   text-decoration: underline;
+}
+
+
+/* =========================================
+   LOADING
+========================================= */
+
+.loading-screen {
+  width: min(420px, 90%);
+
+  text-align: center;
+}
+
+.loading-screen h2 {
+  margin: 15px 0 8px;
+
+  color: #f7f1df;
+}
+
+.loading-screen p {
+  margin: 0;
+
+  color: #dbc9bb;
 }
 
 
@@ -1021,17 +1697,163 @@ select {
 }
 
 .dashboard p {
-  color: #999;
+  color: #dbc9bb;
 }
 
 .user-card {
   padding: 25px;
 
-  border: 1px solid #292929;
+  border: 1px solid rgba(247, 241, 223, 0.2);
 
   border-radius: 25px;
 
-  background: #151515;
+  background: #5a4436;
+}
+
+
+/* =========================================
+   CELEBRATION
+========================================= */
+
+.celebration {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: rgba(74, 56, 44, 0.45);
+
+  backdrop-filter: blur(5px);
+
+  animation: celebrationFade 0.25s ease;
+}
+
+.celebration-card {
+  width: min(90%, 390px);
+
+  padding: 36px 30px;
+
+  text-align: center;
+
+  background: #f7f1df;
+
+  border: 2px solid #4a382c;
+
+  border-radius: 28px;
+
+  box-shadow:
+    8px 8px 0 #efd4d5,
+    0 20px 50px rgba(74, 56, 44, 0.3);
+
+  animation:
+    celebrationPop 0.4s
+    cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+.celebration-sparkles {
+  margin-bottom: 12px;
+
+  color: #4a382c;
+
+  font-size: 22px;
+
+  letter-spacing: 10px;
+
+  animation:
+    sparkle 1s ease-in-out infinite
+    alternate;
+}
+
+.celebration-icon {
+  width: 72px;
+  height: 72px;
+
+  margin: 0 auto 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #efd4d5;
+
+  border: 2px solid #4a382c;
+
+  font-size: 34px;
+
+  font-weight: 800;
+
+  box-shadow:
+    4px 4px 0 #4a382c;
+}
+
+.celebration-card h2 {
+  margin: 0 0 10px;
+
+  color: #4a382c;
+
+  font-size: 24px;
+}
+
+.celebration-card p {
+  margin: 0;
+
+  color: #75675e;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes celebrationPop {
+  from {
+    opacity: 0;
+
+    transform:
+      scale(0.75)
+      rotate(-3deg);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      scale(1)
+      rotate(0);
+  }
+}
+
+@keyframes celebrationFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes sparkle {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-5px);
+  }
 }
 
 
@@ -1063,7 +1885,8 @@ select {
     width: 105px;
     height: 105px;
 
-    box-shadow: 5px 5px 0 #c9aeb0;
+    box-shadow:
+      5px 5px 0 #efd4d5;
   }
 
   .progress-circle strong {
@@ -1110,7 +1933,17 @@ select {
     padding: 35px 24px;
 
     box-shadow:
-      6px 6px 0 #c8b3b4;
+      6px 6px 0 #efd4d5;
+  }
+
+  .streak-section,
+  .date-overview {
+    flex-direction: column;
+  }
+
+  .due-date-input,
+  .priority-select {
+    flex: 1;
   }
 }
 
@@ -1138,593 +1971,32 @@ select {
   }
 }
 
-.loading-screen {
-  width: min(420px, 90%);
-  text-align: center;
-}
 
-.loading-screen h2 {
-  margin: 15px 0 8px;
-  color: #f8f5ef;
-}
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
 
-.loading-screen p {
-  margin: 0;
-  color: #88837d;
-}
+@media (max-width: 360px) {
 
-.empty-task {
-  margin: 8px 0 0;
-  color: rgba(25, 23, 23, 0.45);
-  font-size: 12px;
-  font-style: italic;
-}
+  .app {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
 
-.edit-task {
-  padding: 0;
-  border: none;
-  background: transparent;
-  color: #191717;
-  font-size: 15px;
-  opacity: 0;
-  cursor: pointer;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-}
+  .hero h1 {
+    font-size: 46px;
+  }
 
-.task:hover .edit-task {
-  opacity: 0.45;
-}
-
-.edit-task:hover {
-  opacity: 1;
-  transform: scale(1.15);
-}
-
-.edit-task-input {
-  flex: 1;
-  min-width: 0;
-  height: 34px;
-  padding: 0 10px;
-  border: 1px solid rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.5);
-  color: #191717;
-  font-size: 13px;
-  outline: none;
-}
-
-.edit-task-input:focus {
-  border-color: rgba(74, 56, 44, 0.5);
-}
-
-.edit-save,
-.edit-cancel {
-  border: none;
-  background: transparent;
-  font-size: 17px;
-  padding: 3px;
-  cursor: pointer;
-}
-
-.edit-save {
-  color: #355b43;
-}
-
-.edit-cancel {
-  color: #8c4545;
-}
-/* =========================
-   PRIORITY
-========================= */
-
-.priority-select {
-  min-width: 115px;
-  padding: 11px 12px;
-  border: 1px solid rgba(60, 45, 35, 0.12);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.55);
-  color: #332820;
-  font-size: 13px;
-  font-family: inherit;
-  cursor: pointer;
-  outline: none;
-}
-
-.priority-select:focus {
-  border-color: rgba(60, 45, 35, 0.3);
-}
-
-.priority-select.high {
-  background: rgba(255, 220, 220, 0.7);
-}
-
-.priority-select.medium {
-  background: rgba(255, 242, 195, 0.7);
-}
-
-.priority-select.low {
-  background: rgba(218, 241, 220, 0.7);
-}
-
-/* Task priority badge */
-
-.priority-badge {
-  margin-left: auto;
-  padding: 4px 8px;
-  border-radius: 999px;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-}
-
-.priority-badge.high {
-  background: #f5d4d4;
-  color: #8b4141;
-}
-
-.priority-badge.medium {
-  background: #f4e8bb;
-  color: #806b27;
-}
-
-.priority-badge.low {
-  background: #d9eadb;
-  color: #47704d;
-}
-
-/* Editing priority */
-
-.edit-priority-select {
-  width: 42px;
-  padding: 6px;
-  border: none;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-  outline: none;
-}
-/* =========================
-   DATE SYSTEM
-========================= */
-
-.date-overview {
-  display: flex;
-  gap: 14px;
-  margin: 20px 0;
-}
-
-.date-card {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 18px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid rgba(60, 45, 35, 0.08);
-}
-
-.date-card > span {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
-  font-size: 18px;
-}
-
-.date-card strong {
-  display: block;
-  font-size: 20px;
-}
-
-.date-card p {
-  margin: 2px 0 0;
-  font-size: 11px;
-  opacity: 0.55;
-}
-
-.due-date-input {
-  min-width: 145px;
-  padding: 11px 12px;
-  border: 1px solid rgba(60, 45, 35, 0.12);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.55);
-  color: #332820;
-  font-family: inherit;
-  font-size: 12px;
-  outline: none;
-}
-
-.due-date-input:focus {
-  border-color: rgba(60, 45, 35, 0.3);
-}
-
-/* =========================
-   TASK CONTENT
-========================= */
-
-.task-content {
-  min-width: 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.due-date {
-  width: fit-content;
-  font-size: 9px;
-  letter-spacing: 0.02em;
-  opacity: 0.6;
-}
-
-.due-date.today {
-  color: #806b27;
-  opacity: 1;
-  font-weight: 700;
-}
-
-.due-date.overdue {
-  color: #9a4848;
-  opacity: 1;
-  font-weight: 700;
-}
-
-.due-date.upcoming {
-  color: #52715a;
-}
-
-/* =========================
-   EDIT DATE
-========================= */
-
-.edit-date-input {
-  width: 125px;
-  padding: 6px 7px;
-  border: 1px solid rgba(60, 45, 35, 0.12);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.6);
-  font-family: inherit;
-  font-size: 10px;
-  outline: none;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
-  .date-overview {
+  .category-title {
+    align-items: flex-start;
     flex-direction: column;
   }
 
-  .add-task {
-    flex-wrap: wrap;
+  .priority-badge {
+    display: none;
   }
 
-  .add-task input:first-child {
-    width: 100%;
-  }
-
-  .due-date-input {
-    flex: 1;
-  }
-
-  .priority-select {
-    flex: 1;
-  }
-}/* =========================
-   SMART VIEWS
-========================= */
-
-.smart-views {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin: 14px 0 24px;
-}
-
-.smart-views button {
-  border: 1px solid rgba(60, 45, 35, 0.1);
-  background: rgba(255, 255, 255, 0.45);
-  color: #49382e;
-  padding: 9px 14px;
-  border-radius: 999px;
-  font-family: inherit;
-  font-size: 11px;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.smart-views button:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.7);
-}
-
-.smart-views button.active {
-  background: #49382e;
-  color: white;
-  box-shadow: 0 5px 15px rgba(60, 45, 35, 0.15);
-}
-/* =========================
-   STREAK
-========================= */
-
-.streak-section {
-  display: flex;
-  gap: 14px;
-  margin: 18px 0;
-}
-
-.streak-card {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 17px 20px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.42);
-  border: 1px solid rgba(60, 45, 35, 0.08);
-}
-
-.streak-icon {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.65);
-  font-size: 21px;
-}
-
-.streak-card strong {
-  display: block;
-  font-size: 20px;
-}
-
-.streak-card p {
-  margin: 3px 0 0;
-  font-size: 10px;
-  opacity: 0.55;
-}
-
-/* =========================
-   SMART VIEWS
-========================= */
-
-.smart-views {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin: 14px 0 24px;
-}
-
-.smart-views button {
-  border: 1px solid rgba(60, 45, 35, 0.1);
-  background: rgba(255, 255, 255, 0.45);
-  color: #49382e;
-  padding: 9px 14px;
-  border-radius: 999px;
-  font-family: inherit;
-  font-size: 11px;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease,
-    box-shadow 0.2s ease;
-}
-
-.smart-views button:hover {
-  transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.7);
-}
-
-.smart-views button.active {
-  background: #49382e;
-  color: white;
-  box-shadow: 0 5px 15px rgba(60, 45, 35, 0.15);
-}
-
-/* =========================
-   DATE OVERVIEW
-========================= */
-
-.date-overview {
-  display: flex;
-  gap: 14px;
-  margin: 20px 0;
-}
-
-.date-card {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 16px 18px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid rgba(60, 45, 35, 0.08);
-}
-
-.date-card > span {
-  width: 38px;
-  height: 38px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.6);
-  font-size: 18px;
-}
-
-.date-card strong {
-  display: block;
-  font-size: 20px;
-}
-
-.date-card p {
-  margin: 2px 0 0;
-  font-size: 11px;
-  opacity: 0.55;
-}
-
-/* =========================
-   DUE DATE
-========================= */
-
-.due-date-input {
-  min-width: 145px;
-  padding: 11px 12px;
-  border: 1px solid rgba(60, 45, 35, 0.12);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.55);
-  color: #332820;
-  font-family: inherit;
-  font-size: 12px;
-  outline: none;
-}
-
-.due-date-input:focus {
-  border-color: rgba(60, 45, 35, 0.3);
-}
-
-.task-content {
-  min-width: 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.due-date {
-  width: fit-content;
-  font-size: 9px;
-  letter-spacing: 0.02em;
-  opacity: 0.6;
-}
-
-.due-date.today {
-  color: #806b27;
-  opacity: 1;
-  font-weight: 700;
-}
-
-.due-date.overdue {
-  color: #9a4848;
-  opacity: 1;
-  font-weight: 700;
-}
-
-.due-date.upcoming {
-  color: #52715a;
-}
-
-/* =========================
-   PRIORITY
-========================= */
-
-.priority-select {
-  min-width: 115px;
-  padding: 11px 12px;
-  border: 1px solid rgba(60, 45, 35, 0.12);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.55);
-  color: #332820;
-  font-size: 13px;
-  font-family: inherit;
-  cursor: pointer;
-  outline: none;
-}
-
-.priority-select.high {
-  background: rgba(255, 220, 220, 0.7);
-}
-
-.priority-select.medium {
-  background: rgba(255, 242, 195, 0.7);
-}
-
-.priority-select.low {
-  background: rgba(218, 241, 220, 0.7);
-}
-
-.priority-badge {
-  margin-left: auto;
-  padding: 4px 8px;
-  border-radius: 999px;
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  white-space: nowrap;
-}
-
-.priority-badge.high {
-  background: #f5d4d4;
-  color: #8b4141;
-}
-
-.priority-badge.medium {
-  background: #f4e8bb;
-  color: #806b27;
-}
-
-.priority-badge.low {
-  background: #d9eadb;
-  color: #47704d;
-}
-
-/* =========================
-   EDITING
-========================= */
-
-.edit-priority-select {
-  width: 42px;
-  padding: 6px;
-  border: none;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-  outline: none;
-}
-
-.edit-date-input {
-  width: 125px;
-  padding: 6px 7px;
-  border: 1px solid rgba(60, 45, 35, 0.12);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.6);
-  font-family: inherit;
-  font-size: 10px;
-  outline: none;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media (max-width: 700px) {
-  .streak-section,
-  .date-overview {
-    flex-direction: column;
-  }
-
-  .add-task {
-    flex-wrap: wrap;
-  }
-
-  .add-task input:first-child {
-    width: 100%;
-  }
-
-  .due-date-input,
-  .priority-select {
-    flex: 1;
+  .task {
+    gap: 7px;
   }
 }

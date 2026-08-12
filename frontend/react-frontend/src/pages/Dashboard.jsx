@@ -29,6 +29,27 @@ const categories = [
   },
 ];
 
+const motivationalMessages = [
+  "You're doing better than you think ✦",
+  "Tiny steps still move you forward 🌷",
+  "Look at you getting things done ✨",
+  "One thing at a time. You've got this ☕",
+  "Progress looks good on you ♡",
+  "Future you is going to be grateful for this.",
+  "You showed up. That's already something.",
+  "Keep going — you're building something lovely ✦",
+];
+
+const completionMessages = [
+  "Task conquered! ✦",
+  "Look at you go! ✨",
+  "Another one down! 🌷",
+  "Tiny win, big energy ♡",
+  "You're on a roll! ☕",
+  "Future you says thank you ✦",
+  "That deserves a little celebration! 🎀",
+];
+
 function Dashboard() {
   const navigate = useNavigate();
 
@@ -72,9 +93,7 @@ function Dashboard() {
 
   const [editingTask, setEditingTask] = useState(null);
   const [editText, setEditText] = useState("");
-  const [editPriority, setEditPriority] =
-    useState("Medium");
-
+  const [editPriority, setEditPriority] = useState("Medium");
   const [editDueDate, setEditDueDate] = useState("");
 
   // =========================
@@ -83,6 +102,13 @@ function Dashboard() {
 
   const [streak, setStreak] = useState(0);
   const [bestStreak, setBestStreak] = useState(0);
+
+  // =========================
+  // CELEBRATION
+  // =========================
+
+  const [celebration, setCelebration] = useState(false);
+  const [celebrationText, setCelebrationText] = useState("");
 
   // =========================
   // DATE HELPERS
@@ -120,7 +146,113 @@ function Dashboard() {
   };
 
   // =========================
-  // STREAK
+  // DAILY MOTIVATION
+  // =========================
+
+  const getDailyMessage = () => {
+    const today = new Date();
+
+    const dayNumber =
+      today.getFullYear() +
+      today.getMonth() +
+      today.getDate();
+
+    return motivationalMessages[
+      dayNumber % motivationalMessages.length
+    ];
+  };
+
+  // =========================
+  // STREAK CALCULATION
+  // =========================
+
+  const calculateStreak = (completedDays) => {
+    if (!completedDays.length) {
+      return {
+        current: 0,
+        best: 0,
+      };
+    }
+
+    const sortedDays = [...completedDays].sort();
+
+    let best = 1;
+    let running = 1;
+
+    for (let i = 1; i < sortedDays.length; i++) {
+      const previous = new Date(sortedDays[i - 1]);
+      const current = new Date(sortedDays[i]);
+
+      const difference =
+        (current - previous) /
+        (1000 * 60 * 60 * 24);
+
+      if (difference === 1) {
+        running++;
+      } else {
+        running = 1;
+      }
+
+      best = Math.max(best, running);
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const todayKey = today
+      .toISOString()
+      .split("T")[0];
+
+    const yesterday = new Date(today);
+
+    yesterday.setDate(
+      yesterday.getDate() - 1
+    );
+
+    const yesterdayKey = yesterday
+      .toISOString()
+      .split("T")[0];
+
+    let currentStreak = 0;
+
+    if (sortedDays.includes(todayKey)) {
+      currentStreak = 1;
+
+      if (sortedDays.includes(yesterdayKey)) {
+        for (
+          let i = sortedDays.length - 1;
+          i > 0;
+          i--
+        ) {
+          const current = new Date(
+            sortedDays[i]
+          );
+
+          const previous = new Date(
+            sortedDays[i - 1]
+          );
+
+          const difference =
+            (current - previous) /
+            (1000 * 60 * 60 * 24);
+
+          if (difference === 1) {
+            currentStreak++;
+          } else {
+            break;
+          }
+        }
+      }
+    }
+
+    return {
+      current: currentStreak,
+      best,
+    };
+  };
+
+  // =========================
+  // UPDATE STREAK
   // =========================
 
   const updateStreak = () => {
@@ -143,84 +275,6 @@ function Dashboard() {
       completedDays.push(todayKey);
     }
 
-    completedDays.sort();
-
-    let best = 0;
-    let running = 0;
-
-    for (let i = 0; i < completedDays.length; i++) {
-      if (i === 0) {
-        running = 1;
-      } else {
-        const previous = new Date(
-          completedDays[i - 1]
-        );
-
-        const current = new Date(
-          completedDays[i]
-        );
-
-        const difference =
-          (current - previous) /
-          (1000 * 60 * 60 * 24);
-
-        if (difference === 1) {
-          running++;
-        } else {
-          running = 1;
-        }
-      }
-
-      best = Math.max(best, running);
-    }
-
-    let currentStreak = 0;
-
-    const yesterday = new Date(today);
-
-    yesterday.setDate(
-      yesterday.getDate() - 1
-    );
-
-    const yesterdayKey = yesterday
-      .toISOString()
-      .split("T")[0];
-
-    if (
-      completedDays.includes(todayKey) &&
-      completedDays.includes(yesterdayKey)
-    ) {
-      currentStreak = 2;
-
-      for (
-        let i = completedDays.length - 1;
-        i > 0;
-        i--
-      ) {
-        const current = new Date(
-          completedDays[i]
-        );
-
-        const previous = new Date(
-          completedDays[i - 1]
-        );
-
-        const difference =
-          (current - previous) /
-          (1000 * 60 * 60 * 24);
-
-        if (difference === 1) {
-          currentStreak++;
-        } else {
-          break;
-        }
-      }
-    } else if (
-      completedDays.includes(todayKey)
-    ) {
-      currentStreak = 1;
-    }
-
     localStorage.setItem(
       "taskStreak",
       JSON.stringify({
@@ -228,12 +282,16 @@ function Dashboard() {
       })
     );
 
-    setStreak(currentStreak);
-    setBestStreak(best);
+    const result = calculateStreak(
+      completedDays
+    );
+
+    setStreak(result.current);
+    setBestStreak(result.best);
   };
 
   // =========================
-  // LOAD USER + TASKS
+  // LOAD DASHBOARD
   // =========================
 
   useEffect(() => {
@@ -275,120 +333,18 @@ function Dashboard() {
           );
         }
 
-        // Load existing streak without
-        // artificially creating a new day.
         const savedData = JSON.parse(
-          localStorage.getItem(
-            "taskStreak"
-          ) || "{}"
+          localStorage.getItem("taskStreak") || "{}"
         );
 
         const completedDays =
           savedData.completedDays || [];
 
-        const today = new Date();
+        const result =
+          calculateStreak(completedDays);
 
-        today.setHours(0, 0, 0, 0);
-
-        const todayKey = today
-          .toISOString()
-          .split("T")[0];
-
-        const yesterday = new Date(today);
-
-        yesterday.setDate(
-          yesterday.getDate() - 1
-        );
-
-        const yesterdayKey = yesterday
-          .toISOString()
-          .split("T")[0];
-
-        let current = 0;
-        let best = 0;
-        let running = 0;
-
-        for (
-          let i = 0;
-          i < completedDays.length;
-          i++
-        ) {
-          if (i === 0) {
-            running = 1;
-          } else {
-            const previous = new Date(
-              completedDays[i - 1]
-            );
-
-            const currentDate =
-              new Date(
-                completedDays[i]
-              );
-
-            const difference =
-              (currentDate - previous) /
-              (1000 * 60 * 60 * 24);
-
-            if (difference === 1) {
-              running++;
-            } else {
-              running = 1;
-            }
-          }
-
-          best = Math.max(
-            best,
-            running
-          );
-        }
-
-        if (
-          completedDays.includes(
-            todayKey
-          )
-        ) {
-          current = 1;
-
-          if (
-            completedDays.includes(
-              yesterdayKey
-            )
-          ) {
-            for (
-              let i =
-                completedDays.length - 1;
-              i > 0;
-              i--
-            ) {
-              const currentDate =
-                new Date(
-                  completedDays[i]
-                );
-
-              const previous =
-                new Date(
-                  completedDays[i - 1]
-                );
-
-              const difference =
-                (currentDate -
-                  previous) /
-                (1000 *
-                  60 *
-                  60 *
-                  24);
-
-              if (difference === 1) {
-                current++;
-              } else {
-                break;
-              }
-            }
-          }
-        }
-
-        setStreak(current);
-        setBestStreak(best);
+        setStreak(result.current);
+        setBestStreak(result.best);
       } catch (error) {
         console.error(error);
 
@@ -484,6 +440,24 @@ function Dashboard() {
 
         if (data.task.completed) {
           updateStreak();
+
+          const randomMessage =
+            completionMessages[
+              Math.floor(
+                Math.random() *
+                  completionMessages.length
+              )
+            ];
+
+          setCelebrationText(
+            randomMessage
+          );
+
+          setCelebration(true);
+
+          setTimeout(() => {
+            setCelebration(false);
+          }, 2500);
         }
       }
     } catch (error) {
@@ -492,7 +466,7 @@ function Dashboard() {
   };
 
   // =========================
-  // DELETE
+  // DELETE TASK
   // =========================
 
   const deleteTask = async (taskId) => {
@@ -628,7 +602,7 @@ function Dashboard() {
   };
 
   // =========================
-  // SMART FILTER
+  // FILTER TASKS
   // =========================
 
   const getCategoryTasks = (
@@ -743,7 +717,6 @@ function Dashboard() {
     return (
       <main className="auth-page">
         <div className="loading-screen">
-
           <div className="auth-logo">
             ✦
           </div>
@@ -755,7 +728,6 @@ function Dashboard() {
           <p>
             Loading your tasks.
           </p>
-
         </div>
       </main>
     );
@@ -767,6 +739,35 @@ function Dashboard() {
 
   return (
     <div className="app">
+
+      {/* =====================
+          CELEBRATION
+      ====================== */}
+
+      {celebration && (
+        <div className="celebration">
+          <div className="celebration-card">
+
+            <div className="celebration-sparkles">
+              ✦ ✧ ✦
+            </div>
+
+            <div className="celebration-icon">
+              ✓
+            </div>
+
+            <h2>
+              {celebrationText}
+            </h2>
+
+            <p>
+              Keep making those little
+              wins count.
+            </p>
+
+          </div>
+        </div>
+      )}
 
       {/* =====================
           TOP BAR
@@ -823,8 +824,7 @@ function Dashboard() {
           </h1>
 
           <p className="hero-subtitle">
-            A little progress is still
-            progress.
+            {getDailyMessage()}
           </p>
 
         </div>
@@ -1116,9 +1116,7 @@ function Dashboard() {
             )
           }
           onKeyDown={(e) => {
-            if (
-              e.key === "Enter"
-            ) {
+            if (e.key === "Enter") {
               addTask();
             }
           }}
@@ -1181,9 +1179,7 @@ function Dashboard() {
           }
         />
 
-        <button
-          onClick={addTask}
-        >
+        <button onClick={addTask}>
           ＋
         </button>
 
@@ -1269,7 +1265,8 @@ function Dashboard() {
                       {completed}/
                       {
                         categoryTasks.length
-                      } done
+                      }{" "}
+                      done
                     </span>
 
                   </div>
@@ -1329,7 +1326,6 @@ function Dashboard() {
                               task._id ? (
 
                                 <>
-
                                   <input
                                     className="edit-task-input"
                                     value={
@@ -1339,8 +1335,7 @@ function Dashboard() {
                                       e
                                     ) =>
                                       setEditText(
-                                        e
-                                          .target
+                                        e.target
                                           .value
                                       )
                                     }
@@ -1377,8 +1372,7 @@ function Dashboard() {
                                       e
                                     ) =>
                                       setEditPriority(
-                                        e
-                                          .target
+                                        e.target
                                           .value
                                       )
                                     }
@@ -1408,8 +1402,7 @@ function Dashboard() {
                                       e
                                     ) =>
                                       setEditDueDate(
-                                        e
-                                          .target
+                                        e.target
                                           .value
                                       )
                                     }
@@ -1434,14 +1427,12 @@ function Dashboard() {
                                   >
                                     ×
                                   </button>
-
                                 </>
 
                               ) : (
 
-                                /* NORMAL MODE */
-
                                 <>
+                                  {/* CHECKBOX */}
 
                                   <button
                                     className={`checkbox ${
@@ -1459,6 +1450,8 @@ function Dashboard() {
                                       ? "✓"
                                       : ""}
                                   </button>
+
+                                  {/* TASK CONTENT */}
 
                                   <div className="task-content">
 
@@ -1539,14 +1532,12 @@ function Dashboard() {
                                   </button>
 
                                 </>
-
                               )}
 
                             </div>
                           );
                         }
                       )
-
                     )}
 
                   </div>
