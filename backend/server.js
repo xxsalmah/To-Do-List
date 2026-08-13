@@ -14,12 +14,22 @@ const Task = require("./models/Task");
 const app = express();
 
 // ===============================
+// ENVIRONMENT
+// ===============================
+
+const PORT = process.env.PORT || 5000;
+const production = process.env.NODE_ENV === "production";
+
+const CLIENT_URL =
+  process.env.CLIENT_URL || "http://localhost:5174";
+
+// ===============================
 // MIDDLEWARE
 // ===============================
 
 app.use(
   cors({
-    origin: "http://localhost:5174",
+    origin: CLIENT_URL,
     credentials: true,
   })
 );
@@ -120,8 +130,8 @@ app.post("/api/login", async (req, res) => {
 
     res.cookie("auth", user._id.toString(), {
       httpOnly: true,
-      sameSite: "lax",
-      secure: false,
+      sameSite: production ? "none" : "lax",
+      secure: production,
       maxAge: 24 * 60 * 60 * 1000,
     });
 
@@ -185,8 +195,7 @@ app.get("/api/dashboard", async (req, res) => {
 
     if (!userId) {
       return res.status(401).json({
-        message:
-          "You must be logged in to access the dashboard.",
+        message: "You must be logged in to access the dashboard.",
       });
     }
 
@@ -220,8 +229,8 @@ app.post("/api/logout", (req, res) => {
 
   res.clearCookie("auth", {
     httpOnly: true,
-    sameSite: "lax",
-    secure: false,
+    sameSite: production ? "none" : "lax",
+    secure: production,
   });
 
   res.json({
@@ -251,7 +260,7 @@ app.get("/api/tasks", async (req, res) => {
 
     res.json(tasks);
   } catch (error) {
-    console.error("Get tasks error:", error);
+    console.error("GET TASKS ERROR:", error);
 
     res.status(500).json({
       message: "Could not get tasks.",
@@ -310,15 +319,13 @@ app.post("/api/tasks", async (req, res) => {
     await task.save();
 
     console.log("TASK SAVED:", task.text);
-    console.log("PRIORITY:", task.priority);
-    console.log("DUE DATE:", task.dueDate);
 
     res.status(201).json({
       message: "Task created successfully.",
       task,
     });
   } catch (error) {
-    console.error("Create task error:", error);
+    console.error("CREATE TASK ERROR:", error);
 
     res.status(500).json({
       message: "Could not create task.",
@@ -360,7 +367,7 @@ app.patch("/api/tasks/:id", async (req, res) => {
       task,
     });
   } catch (error) {
-    console.error("Update task error:", error);
+    console.error("UPDATE TASK ERROR:", error);
 
     res.status(500).json({
       message: "Could not update task.",
@@ -432,15 +439,13 @@ app.put("/api/tasks/:id", async (req, res) => {
     await task.save();
 
     console.log("TASK EDITED:", task.text);
-    console.log("PRIORITY:", task.priority);
-    console.log("DUE DATE:", task.dueDate);
 
     res.json({
       message: "Task updated successfully.",
       task,
     });
   } catch (error) {
-    console.error("Edit task error:", error);
+    console.error("EDIT TASK ERROR:", error);
 
     res.status(500).json({
       message: "Could not edit task.",
@@ -477,7 +482,7 @@ app.delete("/api/tasks/:id", async (req, res) => {
       message: "Task deleted.",
     });
   } catch (error) {
-    console.error("Delete task error:", error);
+    console.error("DELETE TASK ERROR:", error);
 
     res.status(500).json({
       message: "Could not delete task.",
@@ -495,18 +500,13 @@ mongoose
     console.log("MongoDB connected!");
   })
   .catch((error) => {
-    console.error(
-      "MongoDB connection failed:",
-      error
-    );
+    console.error("MongoDB connection failed:", error);
   });
 
 // ===============================
 // SERVER
 // ===============================
 
-app.listen(5000, () => {
-  console.log(
-    "Server running on http://localhost:5000"
-  );
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
