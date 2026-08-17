@@ -17,7 +17,7 @@ function Login() {
     setLoading(true);
 
     try {
-      const response = await {
+      const response = await fetch("http://localhost:5000/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +40,7 @@ function Login() {
       console.error(error);
       setMessage("Could not connect to the backend.");
     } finally {
-      setLoading(false);fetch("https://to-do-list-1j7r.onrender.com/"), 
+      setLoading(false);
     }
   };
 
