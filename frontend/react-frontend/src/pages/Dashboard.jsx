@@ -298,7 +298,7 @@ function Dashboard() {
     const loadDashboard = async () => {
       try {
         const userResponse = await fetch(
-          "http://localhost:5000/api/me",
+          "https://to-do-list-1j7r.onrender.com",
           {
             credentials: "include",
           }

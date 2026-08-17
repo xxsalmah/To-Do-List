@@ -9,7 +9,7 @@ function ProtectedRoute({ children }) {
     const checkAuth = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/api/me",
+          "https://to-do-list-1j7r.onrender.com",
           {
             credentials: "include",
           }
@@ -40,3 +40,4 @@ function ProtectedRoute({ children }) {
 }
 
 export default ProtectedRoute;
+
