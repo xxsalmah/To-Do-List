@@ -35,7 +35,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/logout", {
+      const response = await fetch("https://to-do-list-1j7r.onrender.com/api/logout", {
         method: "POST",
         credentials: "include",
       });

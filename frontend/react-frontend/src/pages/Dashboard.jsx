@@ -315,7 +315,7 @@ function Dashboard() {
         setUser(userData.user);
 
         const taskResponse = await fetch(
-          "http://localhost:5000/api/tasks",
+          "http://https://to-do-list-1j7r.onrender.com/api/tasks",
           {
             credentials: "include",
           }
@@ -368,7 +368,7 @@ function Dashboard() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/tasks",
+        "http://https://to-do-list-1j7r.onrender.com/api/tasks",
         {
           method: "POST",
           headers: {
@@ -419,7 +419,7 @@ function Dashboard() {
   const toggleTask = async (taskId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/tasks/${taskId}`,
+        `http://https://to-do-list-1j7r.onrender.com/api/tasks/${taskId}`,
         {
           method: "PATCH",
           credentials: "include",
@@ -472,7 +472,7 @@ function Dashboard() {
   const deleteTask = async (taskId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/tasks/${taskId}`,
+        `http://https://to-do-list-1j7r.onrender.com/api/tasks/${taskId}`,
         {
           method: "DELETE",
           credentials: "include",
@@ -537,7 +537,7 @@ function Dashboard() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/tasks/${taskId}`,
+        `http://https://to-do-list-1j7r.onrender.com/api/tasks/${taskId}`,
         {
           method: "PUT",
           headers: {
@@ -588,7 +588,7 @@ function Dashboard() {
   const handleLogout = async () => {
     try {
       await fetch(
-        "http://localhost:5000/api/logout",
+        "http://https://to-do-list-1j7r.onrender.com/api/logout",
         {
           method: "POST",
           credentials: "include",
