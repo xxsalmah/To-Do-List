@@ -21,6 +21,9 @@ const PORT = process.env.PORT || 5000;
 const production = process.env.NODE_ENV === "production";
 
 const CLIENT_URL = process.env.CLIENT_URL;
+if (!CLIENT_URL) {
+  throw new Error("CLIENT_URL environment variable is missing");
+}
 
 app.use(
   cors({
