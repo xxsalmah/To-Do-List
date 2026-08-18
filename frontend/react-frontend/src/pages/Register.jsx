@@ -18,7 +18,7 @@ function Register() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://https://to-do-list-1j7r.onrender.com/api/register", {
+      const response = await fetch("https://to-do-list-1j7r.onrender.com/api/register/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
